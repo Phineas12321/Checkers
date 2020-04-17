@@ -153,3 +153,204 @@
     margin-top: -100px;
     margin-left: 250px;
 }
+
+
+
+.space{
+    background: green;
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+}
+
+#sp-01{
+    position: absolute;
+    margin-top: -795px;
+    margin-left: -250px;
+}
+
+#sp-02{
+    position: absolute;
+    margin-top: -795px;
+    margin-left: -50px;
+}
+
+#sp-03{
+    position: absolute;
+    margin-top: -795px;
+    margin-left: 150px;
+}
+
+#sp-04{
+    position: absolute;
+    margin-top: -795px;
+    margin-left: 350px;
+}
+
+#sp-05{
+    position: absolute;
+    margin-top: -695px;
+    margin-left: -350px;
+}
+
+#sp-06{
+    position: absolute;
+    margin-top: -695px;
+    margin-left: -150px;
+}
+
+#sp-07{
+    position: absolute;
+    margin-top: -695px;
+    margin-left: 50px;
+}
+
+#sp-08{
+    position: absolute;
+    margin-top: -695px;
+    margin-left: 250px;
+}
+
+#sp-09{
+    position: absolute;
+    margin-top: -595px;
+    margin-left: -250px;
+}
+
+#sp-10{
+    position: absolute;
+    margin-top: -595px;
+    margin-left: -50px;
+}
+
+#sp-11{
+    position: absolute;
+    margin-top: -595px;
+    margin-left: 150px;
+}
+
+#sp-12{
+    position: absolute;
+    margin-top: -595px;
+    margin-left: 350px;
+}
+
+#sp-13{
+    position: absolute;
+    margin-top: -495px;
+    margin-left: -350px;
+}
+
+#sp-14{
+    position: absolute;
+    margin-top: -495px;
+    margin-left: -150px;
+}
+
+#sp-15{
+    position: absolute;
+    margin-top: -495px;
+    margin-left: 50px;
+}
+
+#sp-16{
+    position: absolute;
+    margin-top: -495px;
+    margin-left: 250px;
+}
+
+#sp-17{
+    position: absolute;
+    margin-top: -395px;
+    margin-left: -250px;
+}
+
+#sp-18{
+    position: absolute;
+    margin-top: -395px;
+    margin-left: -50px;
+}
+
+#sp-19{
+    position: absolute;
+    margin-top: -395px;
+    margin-left: 150px;
+}
+
+#sp-20{
+    position: absolute;
+    margin-top: -395px;
+    margin-left: 350px;
+}
+
+#sp-21{
+    position: absolute;
+    margin-top: -295px;
+    margin-left: -350px;
+}
+
+#sp-22{
+    position: absolute;
+    margin-top: -295px;
+    margin-left: -150px;
+}
+
+#sp-23{
+    position: absolute;
+    margin-top: -295px;
+    margin-left: 50px;
+}
+
+#sp-24{
+    position: absolute;
+    margin-top: -295px;
+    margin-left: 250px;
+}
+
+#sp-25{
+    position: absolute;
+    margin-top: -195px;
+    margin-left: -250px;
+}
+
+#sp-26{
+    position: absolute;
+    margin-top: -195px;
+    margin-left: -50px;
+}
+
+#sp-27{
+    position: absolute;
+    margin-top: -195px;
+    margin-left: 150px;
+}
+
+#sp-28{
+    position: absolute;
+    margin-top: -195px;
+    margin-left: 350px;
+}
+
+#sp-29{
+    position: absolute;
+    margin-top: -95px;
+    margin-left: -350px;
+}
+
+#sp-30{
+    position: absolute;
+    margin-top: -95px;
+    margin-left: -150px;
+}
+
+#sp-31{
+    position: absolute;
+    margin-top: -95px;
+    margin-left: 50px;
+}
+
+#sp-32{
+    position: absolute;
+    margin-top: -95px;
+    margin-left: 250px;
+}
