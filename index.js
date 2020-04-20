@@ -193,7 +193,6 @@ let allowMovement = (pawn) => {
             for(let j = 1; j < 13; j++){
                 if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
                     occupied = true
-                    console.log('true')
                 }
                 
             }
@@ -201,11 +200,18 @@ let allowMovement = (pawn) => {
                 document.getElementById(`sp-${i}`).style.visibility = 'visible'
             }
         }
-
-        // if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
-        //     document.getElementById(`sp-${i}`).style.visibility = 'visible'
-            
-        // }
-            
+        
+        if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
+            let occupied = false
+            for(let j = 1; j < 13; j++){
+                if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
+                    occupied = true
+                }
+                
+            }
+            if(occupied === false){
+                document.getElementById(`sp-${i}`).style.visibility = 'visible'
+            }
+        }
     }
 }
