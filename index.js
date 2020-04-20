@@ -165,6 +165,7 @@ document.getElementById('sp-32').style.visibility = 'hidden';
 
 
 let allowMovement = (pawn) => {
+    let occupied = false
     let x = document.getElementById(pawn).style.marginTop.split('')
     x.pop()
     x.pop()
@@ -186,18 +187,19 @@ let allowMovement = (pawn) => {
     yminus+='px'
 
 
-
     for(let i = 1; i < 33; i++){
         if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yminus === document.getElementById(`sp-${i}`).style.marginLeft){
-
-            //    !!!! THIS BIT IS WEIRD.  TRYNA FIGURE IT OUT !!!!
-            //
-            // for(let j = 1; j < 13; j++){
-            //     if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
-            //         document.getElementById(`sp-${i}`).style.visibility = 'visible'
-            //     }
-            
-            // }
+            let occupied = false
+            for(let j = 1; j < 13; j++){
+                if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
+                    occupied = true
+                    console.log('true')
+                }
+                
+            }
+            if(occupied === false){
+                document.getElementById(`sp-${i}`).style.visibility = 'visible'
+            }
         }
 
         // if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
