@@ -165,7 +165,6 @@ document.getElementById('sp-32').style.visibility = 'hidden';
 
 
 let allowMovement = (pawn) => {
-    let occupied = false
     let x = document.getElementById(pawn).style.marginTop.split('')
     x.pop()
     x.pop()
@@ -194,17 +193,7 @@ let allowMovement = (pawn) => {
                 if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
                     occupied = true
                 }
-                
-            }
-            if(occupied === false){
-                document.getElementById(`sp-${i}`).style.visibility = 'visible'
-            }
-        }
-        
-        if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
-            let occupied = false
-            for(let j = 1; j < 13; j++){
-                if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
+                if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
                     occupied = true
                 }
                 
@@ -213,5 +202,33 @@ let allowMovement = (pawn) => {
                 document.getElementById(`sp-${i}`).style.visibility = 'visible'
             }
         }
+
+        if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
+            let occupied = false
+            for(let j = 1; j < 13; j++){
+                if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
+                    occupied = true
+                }
+                if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
+                    occupied = true
+                }
+            }
+            if(occupied === false){
+                document.getElementById(`sp-${i}`).style.visibility = 'visible'
+            }
+        }
+    }
+    window.pawn = document.getElementById(pawn)
+}
+
+
+
+
+let move = (space) => {
+    space = document.getElementById(space)
+    pawn.style.marginLeft = space.style.marginLeft
+    pawn.style.marginTop = space.style.marginTop
+    for(let i = 1; i < 33; i++){
+        document.getElementById(`sp-${i}`).style.visibility = 'hidden'
     }
 }
