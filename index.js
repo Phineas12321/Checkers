@@ -163,62 +163,65 @@ document.getElementById('sp-32').style.visibility = 'hidden';
 
 
 
-
+let turn = true
 let allowMovement = (pawn) => {
-    let x = document.getElementById(pawn).style.marginTop.split('')
-    x.pop()
-    x.pop()
-    x = x.join('')
-    let xplus = +x+100
-    xplus+='px'
-    let xminus = +x-100
-    xminus+='px'
+    if(turn === true){
+        let x = document.getElementById(pawn).style.marginTop.split('')
+        x.pop()
+        x.pop()
+        x = x.join('')
+        let xplus = +x+100
+        xplus+='px'
+        let xminus = +x-100
+        xminus+='px'
 
 
 
-    let y = document.getElementById(pawn).style.marginLeft.split('')
-    y.pop()
-    y.pop()
-    y = y.join('')
-    let yplus = +y+100
-    yplus+='px'
-    let yminus = +y-100
-    yminus+='px'
+        let y = document.getElementById(pawn).style.marginLeft.split('')
+        y.pop()
+        y.pop()
+        y = y.join('')
+        let yplus = +y+100
+        yplus+='px'
+        let yminus = +y-100
+        yminus+='px'
 
 
-    for(let i = 1; i < 33; i++){
-        if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yminus === document.getElementById(`sp-${i}`).style.marginLeft){
-            let occupied = false
-            for(let j = 1; j < 13; j++){
-                if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
-                    occupied = true
+        for(let i = 1; i < 33; i++){
+            if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yminus === document.getElementById(`sp-${i}`).style.marginLeft){
+                let occupied = false
+                for(let j = 1; j < 13; j++){
+                    if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
+                        occupied = true
+                    }
+                    if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
+                        occupied = true
+                    }
+                    
                 }
-                if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
-                    occupied = true
+                if(occupied === false){
+                    document.getElementById(`sp-${i}`).style.visibility = 'visible'
                 }
-                
             }
-            if(occupied === false){
-                document.getElementById(`sp-${i}`).style.visibility = 'visible'
+
+            if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
+                let occupied = false
+                for(let j = 1; j < 13; j++){
+                    if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
+                        occupied = true
+                    }
+                    if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
+                        occupied = true
+                    }
+                }
+                if(occupied === false){
+                    document.getElementById(`sp-${i}`).style.visibility = 'visible'
+                }
             }
         }
-
-        if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
-            let occupied = false
-            for(let j = 1; j < 13; j++){
-                if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
-                    occupied = true
-                }
-                if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
-                    occupied = true
-                }
-            }
-            if(occupied === false){
-                document.getElementById(`sp-${i}`).style.visibility = 'visible'
-            }
-        }
+        window.pawn = document.getElementById(pawn)
+        turn = false
     }
-    window.pawn = document.getElementById(pawn)
 }
 
 
@@ -231,4 +234,57 @@ let move = (space) => {
     for(let i = 1; i < 33; i++){
         document.getElementById(`sp-${i}`).style.visibility = 'hidden'
     }
+
+    redMove()
+}
+
+
+
+
+let redMove = () => {
+    for(let i = 1; i < 13; i ++){
+        let x = document.getElementById(`red-${i}`).style.marginTop.split('')
+        x.pop()
+        x.pop()
+        x = x.join('')
+        let xplus = +x+100
+        xplus+='px'
+        let xminus = +x-100
+        xminus+='px'
+
+
+
+        let y = document.getElementById(`red-${i}`).style.marginLeft.split('')
+        y.pop()
+        y.pop()
+        y = y.join('')
+        let yplus = +y+100
+        yplus+='px'
+        let yminus = +y-100
+        yminus+='px'
+
+
+
+        for(let j = 1; j < 33; j++){
+            if(xplus === document.getElementById(`sp-${j}`).style.marginTop && yminus === document.getElementById(`sp-${j}`).style.marginLeft){
+                let occupied = false
+                for(let l = 1; l < 13; l++){
+                    if(xplus === document.getElementById(`blue-${l}`).style.marginTop && yminus === document.getElementById(`blue-${l}`).style.marginLeft){
+                        occupied = true
+                    }
+                    if(xplus === document.getElementById(`red-${l}`).style.marginTop && yminus === document.getElementById(`red-${l}`).style.marginLeft){
+                        occupied = true
+                    }
+                    
+                }
+                if(occupied === false){
+                    //???
+                }
+            }
+        }
+    }
+
+
+
+    
 }
