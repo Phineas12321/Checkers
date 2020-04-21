@@ -227,23 +227,9 @@ let allowMovement = (pawn) => {
 
 
 
-let move = (space) => {
-    space = document.getElementById(space)
-    pawn.style.marginLeft = space.style.marginLeft
-    pawn.style.marginTop = space.style.marginTop
-    for(let i = 1; i < 33; i++){
-        document.getElementById(`sp-${i}`).style.visibility = 'hidden'
-    }
-
-    redMove()
-}
-
-
-
-
-let redMove = () => {
-    for(let i = 1; i < 13; i ++){
-        let x = document.getElementById(`red-${i}`).style.marginTop.split('')
+let allowMovementRed = (pawn) => {
+    if(turn === false){
+        let x = document.getElementById(pawn).style.marginTop.split('')
         x.pop()
         x.pop()
         x = x.join('')
@@ -254,7 +240,7 @@ let redMove = () => {
 
 
 
-        let y = document.getElementById(`red-${i}`).style.marginLeft.split('')
+        let y = document.getElementById(pawn).style.marginLeft.split('')
         y.pop()
         y.pop()
         y = y.join('')
@@ -264,27 +250,51 @@ let redMove = () => {
         yminus+='px'
 
 
-
-        for(let j = 1; j < 33; j++){
-            if(xplus === document.getElementById(`sp-${j}`).style.marginTop && yminus === document.getElementById(`sp-${j}`).style.marginLeft){
+        for(let i = 1; i < 33; i++){
+            if(xplus === document.getElementById(`sp-${i}`).style.marginTop && yminus === document.getElementById(`sp-${i}`).style.marginLeft){
                 let occupied = false
-                for(let l = 1; l < 13; l++){
-                    if(xplus === document.getElementById(`blue-${l}`).style.marginTop && yminus === document.getElementById(`blue-${l}`).style.marginLeft){
+                for(let j = 1; j < 13; j++){
+                    if(xplus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
                         occupied = true
                     }
-                    if(xplus === document.getElementById(`red-${l}`).style.marginTop && yminus === document.getElementById(`red-${l}`).style.marginLeft){
+                    if(xplus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
                         occupied = true
                     }
                     
                 }
                 if(occupied === false){
-                    //???
+                    document.getElementById(`sp-${i}`).style.visibility = 'visible'
+                }
+            }
+
+            if(xplus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
+                let occupied = false
+                for(let j = 1; j < 13; j++){
+                    if(xplus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
+                        occupied = true
+                    }
+                    if(xplus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
+                        occupied = true
+                    }
+                }
+                if(occupied === false){
+                    document.getElementById(`sp-${i}`).style.visibility = 'visible'
                 }
             }
         }
+        window.pawn = document.getElementById(pawn)
+        turn = true
     }
+}
 
 
 
-    
+
+let move = (space) => {
+    space = document.getElementById(space)
+    pawn.style.marginLeft = space.style.marginLeft
+    pawn.style.marginTop = space.style.marginTop
+    for(let i = 1; i < 33; i++){
+        document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+    }
 }
