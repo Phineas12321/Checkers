@@ -210,7 +210,7 @@ let allowMovement = (pawn) => {
                     if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
                         occupied = true
                     }
-                    if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
+                    if(xminus === document.getElementById(`red-${j}`).style.marginTop && yplus === document.getElementById(`red-${j}`).style.marginLeft){
                         occupied = true
                     }
                 }
@@ -273,7 +273,7 @@ let allowMovementRed = (pawn) => {
                     if(xplus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
                         occupied = true
                     }
-                    if(xplus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
+                    if(xplus === document.getElementById(`red-${j}`).style.marginTop && yplus === document.getElementById(`red-${j}`).style.marginLeft){
                         occupied = true
                     }
                 }
