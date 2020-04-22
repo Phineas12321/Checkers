@@ -216,6 +216,10 @@ let allowMovement = (pawn) => {
                                         jump = false
                                         
                                     }
+                                    if(xminusX2 === document.getElementById(`blue-${h}`).style.marginTop && yminusX2 === document.getElementById(`blue-${h}`).style.marginLeft){
+                                        jump = false
+                                        
+                                    }
                                     
                                 }
                                 if(jump === true){
@@ -254,6 +258,9 @@ let allowMovement = (pawn) => {
                                     if(xminusX2 === document.getElementById(`red-${h}`).style.marginTop && yplusX2 === document.getElementById(`red-${h}`).style.marginLeft){
                                         jump = false
                                         
+                                    }
+                                    if(xminusX2 === document.getElementById(`blue-${h}`).style.marginTop && yplusX2 === document.getElementById(`blue-${h}`).style.marginLeft){
+                                        jump = false
                                     }
                                     
                                 }
