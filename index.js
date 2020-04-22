@@ -295,8 +295,12 @@ let allowMovementRed = (pawn) => {
         x = x.join('')
         let xplus = +x+100
         xplus+='px'
+        let xplusX2 = +x+200
+        xplusX2+='px'
         let xminus = +x-100
         xminus+='px'
+        let xminusX2 = +x-200
+        xminusX2+='px'
 
 
 
@@ -306,8 +310,12 @@ let allowMovementRed = (pawn) => {
         y = y.join('')
         let yplus = +y+100
         yplus+='px'
+        yplusX2 = +y+200
+        yplusX2+='px'
         let yminus = +y-100
         yminus+='px'
+        let yminusX2 = +y-200
+        yminusX2+='px'
 
 
         for(let i = 1; i < 33; i++){
@@ -316,6 +324,31 @@ let allowMovementRed = (pawn) => {
                 for(let j = 1; j < 13; j++){
                     if(xplus === document.getElementById(`blue-${j}`).style.marginTop && yminus === document.getElementById(`blue-${j}`).style.marginLeft){
                         occupied = true
+
+                        //  \/  jump  \/
+                        
+                        for(let g = 1; g < 33; g++){
+                            if(xplusX2 === document.getElementById(`sp-${g}`).style.marginTop && yminusX2 === document.getElementById(`sp-${g}`).style.marginLeft){
+                                let jump = true
+                                for(let h = 1; h < 13; h++){
+                                    if(xplusX2 === document.getElementById(`red-${h}`).style.marginTop && yminusX2 === document.getElementById(`red-${h}`).style.marginLeft){
+                                        jump = false
+                                        
+                                    }
+                                    if(xplusX2 === document.getElementById(`blue-${h}`).style.marginTop && yminusX2 === document.getElementById(`blue-${h}`).style.marginLeft){
+                                        jump = false
+                                        
+                                    }
+                                    
+                                }
+                                if(jump === true){
+                                    document.getElementById(`sp-${g}`).style.visibility = 'visible'
+                                }
+                            }
+                        }
+
+                        //  /\  jump  /\
+
                     }
                     if(xplus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
                         occupied = true
@@ -332,6 +365,31 @@ let allowMovementRed = (pawn) => {
                 for(let j = 1; j < 13; j++){
                     if(xplus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
                         occupied = true
+
+                        //  \/  jump  \/
+                        
+                        for(let g = 1; g < 33; g++){
+                            if(xplusX2 === document.getElementById(`sp-${g}`).style.marginTop && yplusX2 === document.getElementById(`sp-${g}`).style.marginLeft){
+                                let jump = true
+                                for(let h = 1; h < 13; h++){
+                                    if(xplusX2 === document.getElementById(`red-${h}`).style.marginTop && yplusX2 === document.getElementById(`red-${h}`).style.marginLeft){
+                                        jump = false
+                                        
+                                    }
+                                    if(xplusX2 === document.getElementById(`blue-${h}`).style.marginTop && yplusX2 === document.getElementById(`blue-${h}`).style.marginLeft){
+                                        jump = false
+                                        
+                                    }
+                                    
+                                }
+                                if(jump === true){
+                                    document.getElementById(`sp-${g}`).style.visibility = 'visible'
+                                }
+                            }
+                        }
+
+                        //  /\  jump  /\
+
                     }
                     if(xplus === document.getElementById(`red-${j}`).style.marginTop && yplus === document.getElementById(`red-${j}`).style.marginLeft){
                         occupied = true
