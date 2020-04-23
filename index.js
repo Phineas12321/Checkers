@@ -291,6 +291,7 @@ let allowMovement = (pawn) => {
         window.pawn = document.getElementById(pawn)
         
     }
+
 }
 
 
@@ -453,5 +454,27 @@ let move = (space) => {
         document.getElementById('rorb').innerHTML = 'blue turn'
     }else{
         document.getElementById('rorb').innerHTML = 'red turn'
+    }
+
+    let game = true
+    for(let i = 1; i < 13; i++){
+        if(document.getElementById(`red-${i}`).style.visibility !== 'hidden'){
+            game = false
+            console.log(i)
+            break
+        }
+        console.log(i)
+    }
+    if(game === true){
+        document.getElementById('rorb').innerHTML = 'blue wins'
+    }
+    game = true
+    for(let i = 1; i < 13; i++){
+        if(document.getElementById(`blue-${i}`).style.visibility !== 'hidden'){
+            game = false
+        }
+    }
+    if(game === true){
+        document.getElementById('rorb').innerHTML = 'red wins'
     }
 }
