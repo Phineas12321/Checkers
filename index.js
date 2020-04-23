@@ -460,10 +460,8 @@ let move = (space) => {
     for(let i = 1; i < 13; i++){
         if(document.getElementById(`red-${i}`).style.visibility !== 'hidden'){
             game = false
-            console.log(i)
             break
         }
-        console.log(i)
     }
     if(game === true){
         document.getElementById('rorb').innerHTML = 'blue wins'
