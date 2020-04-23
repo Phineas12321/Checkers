@@ -164,8 +164,11 @@ document.getElementById('sp-32').style.visibility = 'hidden';
 
 
 let turn = true
+
+
 let allowMovement = (pawn) => {
     if(turn === true){
+        
         let x = document.getElementById(pawn).style.marginTop.split('')
         x.pop()
         x.pop()
@@ -224,8 +227,7 @@ let allowMovement = (pawn) => {
                                 }
                                 if(jump === true){
                                     document.getElementById(`sp-${g}`).style.visibility = 'visible'
-                                    document.getElementById(`red-${j}`).style.visibility = 'hidden'
-                                    document.getElementById(`red-${j}`).style.marginTop = 0
+                                    window.jumped = document.getElementById(`red-${j}`)
                                 }
                             }
                         }
@@ -268,8 +270,7 @@ let allowMovement = (pawn) => {
                                 }
                                 if(jump === true){
                                     document.getElementById(`sp-${g}`).style.visibility = 'visible'
-                                    document.getElementById(`red-${j}`).style.visibility = 'hidden'
-                                    document.getElementById(`red-${j}`).style.marginTop = 0
+                                    window.jumped = document.getElementById(`red-${j}`)
                                 }
                             }
                         }
@@ -284,7 +285,7 @@ let allowMovement = (pawn) => {
             }
         }
         window.pawn = document.getElementById(pawn)
-        turn = false
+        
     }
 }
 
@@ -347,8 +348,7 @@ let allowMovementRed = (pawn) => {
                                 }
                                 if(jump === true){
                                     document.getElementById(`sp-${g}`).style.visibility = 'visible'
-                                    document.getElementById(`blue-${j}`).style.visibility = 'hidden'
-                                    document.getElementById(`blue-${j}`).style.marginTop = 0
+                                    window.jumped = document.getElementById(`blue-${j}`)
                                 }
                             }
                         }
@@ -390,8 +390,7 @@ let allowMovementRed = (pawn) => {
                                 }
                                 if(jump === true){
                                     document.getElementById(`sp-${g}`).style.visibility = 'visible'
-                                    document.getElementById(`blue-${j}`).style.visibility = 'hidden'
-                                    document.getElementById(`blue-${j}`).style.marginTop = 0
+                                    window.jumped = document.getElementById(`blue-${j}`)
                                 }
                             }
                         }
@@ -409,7 +408,7 @@ let allowMovementRed = (pawn) => {
             }
         }
         window.pawn = document.getElementById(pawn)
-        turn = true
+        
     }
 }
 
@@ -417,10 +416,33 @@ let allowMovementRed = (pawn) => {
 
 
 let move = (space) => {
+
+    turn = !turn
+
+    let x = pawn.style.marginTop.split('')
+        x.pop()
+        x.pop()
+        x = x.join('')
+        let xplusX2 = +x+200
+        xplusX2+='px'
+        let xminusX2 = +x-200
+        xminusX2+='px'
+
+
     space = document.getElementById(space)
     pawn.style.marginLeft = space.style.marginLeft
     pawn.style.marginTop = space.style.marginTop
     for(let i = 1; i < 33; i++){
         document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+    }
+    if(xplusX2 === space.style.marginTop || xminusX2 === space.style.marginTop){
+        jumped.style.visibility = 'hidden'
+        jumped.style.marginTop = '0px'
+        jumped.style.width = '0px'
+    }
+    if(turn){
+        document.getElementById('rorb').innerHTML = 'blue turn'
+    }else{
+        document.getElementById('rorb').innerHTML = 'red turn'
     }
 }
