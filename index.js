@@ -198,6 +198,10 @@ let allowMovement = (pawn) => {
         let yminusX2 = +y-200
         yminusX2 +='px'
 
+    for(let i = 1; i < 33; i++){
+        document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+    }
+
 
         for(let i = 1; i < 33; i++){
             if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yminus === document.getElementById(`sp-${i}`).style.marginLeft){
@@ -321,6 +325,11 @@ let allowMovementRed = (pawn) => {
         yminus+='px'
         let yminusX2 = +y-200
         yminusX2+='px'
+
+
+        for(let i = 1; i < 33; i++){
+            document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+        }
 
 
         for(let i = 1; i < 33; i++){
