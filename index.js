@@ -164,7 +164,8 @@ document.getElementById('sp-32').style.visibility = 'hidden';
 
 
 let turn = true
-
+let canJump = false
+let justJumped = false
 
 let allowMovement = (pawn) => {
     if(turn === true){
@@ -213,11 +214,11 @@ let allowMovement = (pawn) => {
                     if(xminus === document.getElementById(`red-${j}`).style.marginTop && yminus === document.getElementById(`red-${j}`).style.marginLeft){
                         occupied = true
 
-                        //  \/  jump  \/
+                        //  \/  jump up-left  \/
                         
                         for(let g = 1; g < 33; g++){
                             if(xminusX2 === document.getElementById(`sp-${g}`).style.marginTop && yminusX2 === document.getElementById(`sp-${g}`).style.marginLeft){
-                                let jump = true
+                                window.jump = true
                                 for(let h = 1; h < 13; h++){
                                     if(xminusX2 === document.getElementById(`red-${h}`).style.marginTop && yminusX2 === document.getElementById(`red-${h}`).style.marginLeft){
                                         jump = false
@@ -236,13 +237,26 @@ let allowMovement = (pawn) => {
                             }
                         }
 
-                        //  /\  jump  /\
+                        //  /\  jump up-left  /\
                         
                     }
                     
                 }
                 if(occupied === false){
                     document.getElementById(`sp-${i}`).style.visibility = 'visible'
+                }
+
+                for(let a = 1; a < 33; a++){
+                    if(xminus === document.getElementById(`sp-${a}`).style.marginTop && yplus === document.getElementById(`sp-${a}`).style.marginLeft){
+                        for(let b = 1; b < 13; b++){
+                            if(xminus === document.getElementById(`red-${b}`).style.marginTop && yplus === document.getElementById(`red-${b}`).style.marginLeft){
+                                if(jumpMethod('blue', 'red', xminusX2, yplusX2) === true){
+                                    document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+                                }
+                            }
+                            
+                        }
+                    }
                 }
             }
 
@@ -257,7 +271,7 @@ let allowMovement = (pawn) => {
 
 
 
-                        //  \/  jump  \/
+                        //  \/  jump up-right  \/
                         
                         for(let g = 1; g < 33; g++){
                             if(xminusX2 === document.getElementById(`sp-${g}`).style.marginTop && yplusX2 === document.getElementById(`sp-${g}`).style.marginLeft){
@@ -279,12 +293,24 @@ let allowMovement = (pawn) => {
                             }
                         }
 
-                        //  /\  jump  /\
+                        //  /\  jump up-right  /\
 
                     }
                 }
                 if(occupied === false){
                     document.getElementById(`sp-${i}`).style.visibility = 'visible'
+                }
+                for(let a = 1; a < 33; a++){
+                    if(xminus === document.getElementById(`sp-${a}`).style.marginTop && yminus === document.getElementById(`sp-${a}`).style.marginLeft){
+                        for(let b = 1; b < 13; b++){
+                            if(xminus === document.getElementById(`red-${b}`).style.marginTop && yminus === document.getElementById(`red-${b}`).style.marginLeft){
+                                if(jumpMethod('blue', 'red', xminusX2, yminusX2) === true){
+                                    document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+                                }
+                            }
+                            
+                        }
+                    }
                 }
             }
         }
@@ -374,6 +400,18 @@ let allowMovementRed = (pawn) => {
                 if(occupied === false){
                     document.getElementById(`sp-${i}`).style.visibility = 'visible'
                 }
+                for(let a = 1; a < 33; a++){
+                    if(xplus === document.getElementById(`sp-${a}`).style.marginTop && yplus === document.getElementById(`sp-${a}`).style.marginLeft){
+                        for(let b = 1; b < 13; b++){
+                            if(xplus === document.getElementById(`blue-${b}`).style.marginTop && yplus === document.getElementById(`blue-${b}`).style.marginLeft){
+                                if(jumpMethod('red', 'blue', xplusX2, yplusX2) === true){
+                                    document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+                                }
+                            }
+                            
+                        }
+                    }
+                }
             }
 
             if(xplus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
@@ -415,6 +453,18 @@ let allowMovementRed = (pawn) => {
                 if(occupied === false){
                     document.getElementById(`sp-${i}`).style.visibility = 'visible'
                 }
+                for(let a = 1; a < 33; a++){
+                    if(xplus === document.getElementById(`sp-${a}`).style.marginTop && yminus === document.getElementById(`sp-${a}`).style.marginLeft){
+                        for(let b = 1; b < 13; b++){
+                            if(xplus === document.getElementById(`blue-${b}`).style.marginTop && yminus === document.getElementById(`blue-${b}`).style.marginLeft){
+                                if(jumpMethod('red', 'blue', xplusX2, yminusX2) === true){
+                                    document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+                                }
+                            }
+                            
+                        }
+                    }
+                }
             }
         }
         window.pawn = document.getElementById(pawn)
@@ -426,17 +476,17 @@ let allowMovementRed = (pawn) => {
 
 
 let move = (space) => {
-
+    
     turn = !turn
 
     let x = pawn.style.marginTop.split('')
-        x.pop()
-        x.pop()
-        x = x.join('')
-        let xplusX2 = +x+200
-        xplusX2+='px'
-        let xminusX2 = +x-200
-        xminusX2+='px'
+    x.pop()
+    x.pop()
+    x = x.join('')
+    let xplusX2 = +x+200
+    xplusX2+='px'
+    let xminusX2 = +x-200
+    xminusX2+='px'
 
 
     space = document.getElementById(space)
@@ -450,11 +500,25 @@ let move = (space) => {
         jumped.style.marginTop = '0px'
         jumped.style.width = '0px'
     }
-    if(turn){
-        document.getElementById('rorb').innerHTML = 'blue turn'
-    }else{
-        document.getElementById('rorb').innerHTML = 'red turn'
+    
+    // //  \/  jump check  \/
+
+    // canJumpAgain(pawn)
+
+    // //  /\  jump check  /\
+
+    //  \/  change turn  \/
+
+    if(!canJump){
+        if(turn){
+            document.getElementById('rorb').innerHTML = 'blue turn'
+        }else{
+            document.getElementById('rorb').innerHTML = 'red turn'
+        }
     }
+    //  /\  change turn  /\
+
+    //  \/  end game  \/
 
     let game = true
     for(let i = 1; i < 13; i++){
@@ -475,4 +539,123 @@ let move = (space) => {
     if(game === true){
         document.getElementById('rorb').innerHTML = 'red wins'
     }
+
+    //  /\  end game  /\
+    canJump = false
 }
+
+
+
+let canJumpAgain = (pawn) => {
+    console.log(`hit jump`)
+    let x = pawn.style.marginTop.split('')
+    x.pop()
+    x.pop()
+    x = x.join('')
+    let xplusX2 = +x+200
+    xplusX2+='px'
+    let xminusX2 = +x-200
+    xminusX2+='px'
+    let xplus = +x+100
+    xplus+='px'
+    let xminus = +x-100
+    xminus+='px'
+
+    let y = pawn.style.marginTop.split('')
+    y.pop()
+    y.pop()
+    y = y.join('')
+    let yplusX2 = +y+200
+    yplusX2+='px'
+    let yminusX2 = +y-200
+    yminusX2+='px'
+    let yplus = +y+100
+    yplus+='px'
+    let yminus = +y-100
+    yminus+='px'
+
+
+
+
+    let jump = true
+    let occupied = false
+    for(let a = 1; a < 13; a++){
+
+        //  \/  red jump check  \/
+        if(document.getElementById(`red-${a}`) === pawn){
+            console.log(`space here`)
+            for(let b = 1; b < 33; b++){
+                //  \/  red jump down right  \/
+                if(document.getElementById(`sp-${b}`).style.marginTop === xplus && document.getElementById(`sp-${b}`).style.marginLeft === yplus){
+                    for(let c = 1; c < 13; c++){
+                        if(document.getElementById(`blue-${c}`).style.marginTop === xplus && document.getElementById(`blue-${c}`).style.marginLeft === yplus){
+                            for(let d = 1; d < 33; d++){
+                                for(let e = 1; e < 13; e++){
+                                    if(document.getElementById(`sp-${d}`).style.marginTop === xplusX2 && document.getElementById(`sp-${d}`).style.marginTop === yplusX2){
+                                        if(document.getElementById(`red-${e}`).style.marginTop === xplusX2 && document.getElementById(`red-${e}`).style.marginTop === yplusX2){
+                                            occupied = true
+                                        }
+                                        if(document.getElementById(`blue-${e}`).style.marginTop === xplusX2 && document.getElementById(`blue-${e}`).style.marginTop === yplusX2){
+                                            occupied = true
+                                        }
+                                        if(occupied === false){
+                                            document.getElementById(`sp-${d}`).style.visibility = 'visible'
+                                            //window.jumpDownRight = true
+                                            canJump = true
+                                            console.log('can jump down right')
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //  /\  red jump down right  /\
+            }
+        }
+
+        //  /\  red jump check  /\
+
+        //  \/  blue jump check  \/
+
+        if(document.getElementById(`blue-${a}`) === pawn){
+            
+        }
+
+        // /\  blue jump check  /\
+    }
+}
+
+
+
+
+//  \/  method test  \/
+
+let jumpMethod = (crntColor, oppColor, dirV, dirH) => {
+    for(let g = 1; g < 33; g++){
+        if(dirV === document.getElementById(`sp-${g}`).style.marginTop && dirH === document.getElementById(`sp-${g}`).style.marginLeft){
+            let jump = true
+            for(let h = 1; h < 13; h++){
+                if(dirV === document.getElementById(`${crntColor}-${h}`).style.marginTop && dirH === document.getElementById(`${crntColor}-${h}`).style.marginLeft){
+                    jump = false
+                    
+                }
+                if(dirV === document.getElementById(`${oppColor}-${h}`).style.marginTop && dirH === document.getElementById(`${oppColor}-${h}`).style.marginLeft){
+                    jump = false
+                    
+                }
+                
+            }
+            // if(jump === true){
+            //     document.getElementById(`sp-${g}`).style.visibility = 'visible'
+            //     //window.jumped = document.getElementById(`${crntColor}-${j}`)
+            // }
+            if(jump === true){
+                return true
+            }else{
+                return false
+            }
+        }
+    }
+}
+//  /\  method test  /\
