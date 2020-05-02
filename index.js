@@ -199,25 +199,50 @@ let allowMovement = (pawn) => {
         let yminusX2 = +y-200
         yminusX2 +='px'
 
-    for(let i = 1; i < 33; i++){
-        document.getElementById(`sp-${i}`).style.visibility = 'hidden'
-    }
+        for(let i = 1; i < 33; i++){
+            document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+        }
 
 
         for(let i = 1; i < 33; i++){
 
-            //  \/  move up-left  \/
+            if(document.getElementById(pawn).src === 'file:///C:/Users/13852/projects/coding-projects/checkers/blue-king-1.png'){
+                //  \/  move up-left  \/
 
-            movement(i, 'blue', 'red', xminus, xminusX2, yminus, yminusX2, yplus, yplusX2)
+                movement(i, 'blue', 'red', xminus, xminusX2, yminus, yminusX2, yplus, yplusX2)
 
-            //  /\  move up-left  /\
+                //  /\  move up-left  /\
 
-            //  \/  move up-right  \/
+                //  \/  move up-right  \/
 
-            movement(i, 'blue', 'red', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
+                movement(i, 'blue', 'red', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
 
-            //  /\  move up-right  /\
+                //  /\  move up-right  /\
 
+                //  \/  move down-left  \/
+
+                movement(i, 'blue', 'red', xplus, xplusX2, yminus, yminusX2, yplus, yplusX2)
+
+                //  /\  move down-left  /\
+
+                //  \/  move down-right  \/
+
+                movement(i, 'blue', 'red', xplus, xplusX2, yplus, yplusX2, yminus, yminusX2)
+
+                //  /\  move down-right  /\
+            }else{
+                //  \/  move up-left  \/
+
+                movement(i, 'blue', 'red', xminus, xminusX2, yminus, yminusX2, yplus, yplusX2)
+
+                //  /\  move up-left  /\
+
+                //  \/  move up-right  \/
+
+                movement(i, 'blue', 'red', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
+
+                //  /\  move up-right  /\
+            }
         }
         window.pawn = document.getElementById(pawn)
         
@@ -266,18 +291,43 @@ let allowMovementRed = (pawn) => {
 
         for(let i = 1; i < 33; i++){
 
-            //  \/  move down-left  \/
+            if(document.getElementById(pawn).src === 'file:///C:/Users/13852/projects/coding-projects/checkers/red-king.png'){
+                //  \/  move down-left  \/
 
-            movement(i, 'red', 'blue', xplus, xplusX2, yminus, yminusX2, yplus, yplusX2)
+                movement(i, 'red', 'blue', xplus, xplusX2, yminus, yminusX2, yplus, yplusX2)
 
-            //  /\  move down-left  /\
+                //  /\  move down-left  /\
 
-            //  \/  move down-right  \/
+                //  \/  move down-right  \/
 
-            movement(i, 'red', 'blue', xplus, xplusX2, yplus, yplusX2, yminus, yminusX2)
+                movement(i, 'red', 'blue', xplus, xplusX2, yplus, yplusX2, yminus, yminusX2)
 
-            //  /\  move down-right  /\
+                //  /\  move down-right  /\
 
+                //  \/  move up-left  \/
+
+                movement(i, 'red', 'blue', xminus, xminusX2, yminus, yminusX2, yplus, yplusX2)
+
+                //  /\  move up-left  /\
+
+                //  \/  move up-right  \/
+
+                movement(i, 'red', 'blue', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
+
+                //  /\  move up-right  /\
+            }else{
+                //  \/  move down-left  \/
+
+                movement(i, 'red', 'blue', xplus, xplusX2, yminus, yminusX2, yplus, yplusX2)
+
+                //  /\  move down-left  /\
+
+                //  \/  move down-right  \/
+
+                movement(i, 'red', 'blue', xplus, xplusX2, yplus, yplusX2, yminus, yminusX2)
+
+                //  /\  move down-right  /\
+            }
         }
         window.pawn = document.getElementById(pawn)
         
@@ -495,6 +545,10 @@ let otherJump = (crntColor, oppColor, dirV, dirH) => {
 }
 
 //  /\  chech if any piece can jump  /\
+
+
+
+
 
 
 //  \/  move  \/
