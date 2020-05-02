@@ -506,6 +506,16 @@ let move = (space) => {
     // canJumpAgain(pawn)
 
     // //  /\  jump check  /\
+    if(pawn.src === 'file:///C:/Users/13852/projects/coding-projects/checkers/blue.png' && pawn.style.marginTop === '-795px'){
+        src = pawn.src
+        src = src.replace('blue', 'blue-king-1')
+        pawn.src = src
+    }
+    if(pawn.src === 'file:///C:/Users/13852/projects/coding-projects/checkers/red.png' && pawn.style.marginTop === '-95px'){
+        src = pawn.src
+        src = src.replace('red', 'red-king')
+        pawn.src = src
+    }
 
     //  \/  change turn  \/
 
@@ -629,7 +639,7 @@ let canJumpAgain = (pawn) => {
 
 
 
-//  \/  method test  \/
+//  \/  jump check method  \/
 
 let jumpMethod = (crntColor, oppColor, dirV, dirH) => {
     for(let g = 1; g < 33; g++){
@@ -646,10 +656,6 @@ let jumpMethod = (crntColor, oppColor, dirV, dirH) => {
                 }
                 
             }
-            // if(jump === true){
-            //     document.getElementById(`sp-${g}`).style.visibility = 'visible'
-            //     //window.jumped = document.getElementById(`${crntColor}-${j}`)
-            // }
             if(jump === true){
                 return true
             }else{
@@ -658,4 +664,22 @@ let jumpMethod = (crntColor, oppColor, dirV, dirH) => {
         }
     }
 }
-//  /\  method test  /\
+//  /\  jump check method  /\
+
+
+
+
+//  \/  chech if any piece can jump  \/
+
+let otherJump = (crntColor, oppColor, dirV, dirH) => {
+    let jumping = ''
+    for (let a = 1; a < 33; a++){
+        for (let b = 1; b < 13; b++){
+            if(`${crntColor}-${b}`.style.marginTop === dirV && `${crntColor}-${b}`.style.marginLeft === dirH){
+                
+            }
+        }
+    }
+}
+
+//  /\  chech if any piece can jump  /\
