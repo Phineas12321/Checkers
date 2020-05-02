@@ -260,59 +260,65 @@ let allowMovement = (pawn) => {
                 }
             }
 
-            if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
-                let occupied = false
-                for(let j = 1; j < 13; j++){
-                    if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
-                        occupied = true
-                    }
-                    if(xminus === document.getElementById(`red-${j}`).style.marginTop && yplus === document.getElementById(`red-${j}`).style.marginLeft){
-                        occupied = true
+            //  \/  move up-right  \/
+
+            movement(i, 'blue', 'red', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
+
+            //  /\  move up-right  /\
+
+            // if(xminus === document.getElementById(`sp-${i}`).style.marginTop && yplus === document.getElementById(`sp-${i}`).style.marginLeft){
+            //     let occupied = false
+            //     for(let j = 1; j < 13; j++){
+            //         if(xminus === document.getElementById(`blue-${j}`).style.marginTop && yplus === document.getElementById(`blue-${j}`).style.marginLeft){
+            //             occupied = true
+            //         }
+            //         if(xminus === document.getElementById(`red-${j}`).style.marginTop && yplus === document.getElementById(`red-${j}`).style.marginLeft){
+            //             occupied = true
 
 
 
-                        //  \/  jump up-right  \/
+            //             //  \/  jump up-right  \/
                         
-                        for(let g = 1; g < 33; g++){
-                            if(xminusX2 === document.getElementById(`sp-${g}`).style.marginTop && yplusX2 === document.getElementById(`sp-${g}`).style.marginLeft){
-                                let jump = true
-                                for(let h = 1; h < 13; h++){
-                                    if(xminusX2 === document.getElementById(`red-${h}`).style.marginTop && yplusX2 === document.getElementById(`red-${h}`).style.marginLeft){
-                                        jump = false
+            //             for(let g = 1; g < 33; g++){
+            //                 if(xminusX2 === document.getElementById(`sp-${g}`).style.marginTop && yplusX2 === document.getElementById(`sp-${g}`).style.marginLeft){
+            //                     let jump = true
+            //                     for(let h = 1; h < 13; h++){
+            //                         if(xminusX2 === document.getElementById(`red-${h}`).style.marginTop && yplusX2 === document.getElementById(`red-${h}`).style.marginLeft){
+            //                             jump = false
                                         
-                                    }
-                                    if(xminusX2 === document.getElementById(`blue-${h}`).style.marginTop && yplusX2 === document.getElementById(`blue-${h}`).style.marginLeft){
-                                        jump = false
-                                    }
+            //                         }
+            //                         if(xminusX2 === document.getElementById(`blue-${h}`).style.marginTop && yplusX2 === document.getElementById(`blue-${h}`).style.marginLeft){
+            //                             jump = false
+            //                         }
                                     
-                                }
-                                if(jump === true){
-                                    document.getElementById(`sp-${g}`).style.visibility = 'visible'
-                                    window.jumped = document.getElementById(`red-${j}`)
-                                }
-                            }
-                        }
+            //                     }
+            //                     if(jump === true){
+            //                         document.getElementById(`sp-${g}`).style.visibility = 'visible'
+            //                         window.jumped = document.getElementById(`red-${j}`)
+            //                     }
+            //                 }
+            //             }
 
-                        //  /\  jump up-right  /\
+            //             //  /\  jump up-right  /\
 
-                    }
-                }
-                if(occupied === false){
-                    document.getElementById(`sp-${i}`).style.visibility = 'visible'
-                }
-                for(let a = 1; a < 33; a++){
-                    if(xminus === document.getElementById(`sp-${a}`).style.marginTop && yminus === document.getElementById(`sp-${a}`).style.marginLeft){
-                        for(let b = 1; b < 13; b++){
-                            if(xminus === document.getElementById(`red-${b}`).style.marginTop && yminus === document.getElementById(`red-${b}`).style.marginLeft){
-                                if(jumpMethod('blue', 'red', xminusX2, yminusX2) === true){
-                                    document.getElementById(`sp-${i}`).style.visibility = 'hidden'
-                                }
-                            }
+            //         }
+            //     }
+            //     if(occupied === false){
+            //         document.getElementById(`sp-${i}`).style.visibility = 'visible'
+            //     }
+            //     for(let a = 1; a < 33; a++){
+            //         if(xminus === document.getElementById(`sp-${a}`).style.marginTop && yminus === document.getElementById(`sp-${a}`).style.marginLeft){
+            //             for(let b = 1; b < 13; b++){
+            //                 if(xminus === document.getElementById(`red-${b}`).style.marginTop && yminus === document.getElementById(`red-${b}`).style.marginLeft){
+            //                     if(jumpMethod('blue', 'red', xminusX2, yminusX2) === true){
+            //                         document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+            //                     }
+            //                 }
                             
-                        }
-                    }
-                }
-            }
+            //             }
+            //         }
+            //     }
+            // }
         }
         window.pawn = document.getElementById(pawn)
         
@@ -683,3 +689,64 @@ let otherJump = (crntColor, oppColor, dirV, dirH) => {
 }
 
 //  /\  chech if any piece can jump  /\
+
+
+//  \/  move  \/
+
+let movement = (i, crntColor, oppColor, dirV, dirVX2, dirH, dirHX2, oppDirH, oppDirHX2) => {
+    if(dirV === document.getElementById(`sp-${i}`).style.marginTop && dirH === document.getElementById(`sp-${i}`).style.marginLeft){
+        let occupied = false
+        for(let j = 1; j < 13; j++){
+            if(dirV === document.getElementById(`${crntColor}-${j}`).style.marginTop && dirH === document.getElementById(`${crntColor}-${j}`).style.marginLeft){
+                occupied = true
+            }
+            if(dirV === document.getElementById(`${oppColor}-${j}`).style.marginTop && dirH === document.getElementById(`${oppColor}-${j}`).style.marginLeft){
+                occupied = true
+
+
+
+                //  \/  jump  \/
+                
+                for(let g = 1; g < 33; g++){
+                    if(dirVX2 === document.getElementById(`sp-${g}`).style.marginTop && dirHX2 === document.getElementById(`sp-${g}`).style.marginLeft){
+                        let jump = true
+                        for(let h = 1; h < 13; h++){
+                            if(dirVX2 === document.getElementById(`${oppColor}-${h}`).style.marginTop && dirHX2 === document.getElementById(`${oppColor}-${h}`).style.marginLeft){
+                                jump = false
+                                
+                            }
+                            if(dirVX2 === document.getElementById(`${crntColor}-${h}`).style.marginTop && dirHX2 === document.getElementById(`${crntColor}-${h}`).style.marginLeft){
+                                jump = false
+                            }
+                            
+                        }
+                        if(jump === true){
+                            document.getElementById(`sp-${g}`).style.visibility = 'visible'
+                            window.jumped = document.getElementById(`${oppColor}-${j}`)
+                        }
+                    }
+                }
+
+                //  /\  jump  /\
+
+            }
+        }
+        if(occupied === false){
+            document.getElementById(`sp-${i}`).style.visibility = 'visible'
+        }
+        for(let a = 1; a < 33; a++){
+            if(dirV === document.getElementById(`sp-${a}`).style.marginTop && oppDirH === document.getElementById(`sp-${a}`).style.marginLeft){
+                for(let b = 1; b < 13; b++){
+                    if(dirV === document.getElementById(`${oppColor}-${b}`).style.marginTop && oppDirH === document.getElementById(`${oppColor}-${b}`).style.marginLeft){
+                        if(jumpMethod(crntColor, oppColor, dirVX2, oppDirHX2) === true){
+                            document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+//  /\  move  /\
