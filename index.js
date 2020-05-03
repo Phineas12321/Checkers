@@ -207,42 +207,31 @@ let allowMovement = (pawn) => {
         for(let i = 1; i < 33; i++){
 
             if(document.getElementById(pawn).src === 'file:///C:/Users/13852/projects/coding-projects/checkers/blue-king-1.png'){
-                //  \/  move up-left  \/
-
-                movement(i, 'blue', 'red', xminus, xminusX2, yminus, yminusX2, yplus, yplusX2)
-
-                //  /\  move up-left  /\
-
-                //  \/  move up-right  \/
-
-                movement(i, 'blue', 'red', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
-
-                //  /\  move up-right  /\
 
                 //  \/  move down-left  \/
 
-                movement(i, 'blue', 'red', xplus, xplusX2, yminus, yminusX2, yplus, yplusX2)
+                movement(i, 'blue', 'red', xplus, xplusX2, xminus, xminusX2, yminus, yminusX2, yplus, yplusX2, document.getElementById(pawn))
 
                 //  /\  move down-left  /\
 
                 //  \/  move down-right  \/
 
-                movement(i, 'blue', 'red', xplus, xplusX2, yplus, yplusX2, yminus, yminusX2)
+                movement(i, 'blue', 'red', xplus, xplusX2, xminus, xminusX2, yplus, yplusX2, yminus, yminusX2, document.getElementById(pawn))
 
                 //  /\  move down-right  /\
-            }else{
-                //  \/  move up-left  \/
-
-                movement(i, 'blue', 'red', xminus, xminusX2, yminus, yminusX2, yplus, yplusX2)
-
-                //  /\  move up-left  /\
-
-                //  \/  move up-right  \/
-
-                movement(i, 'blue', 'red', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
-
-                //  /\  move up-right  /\
             }
+            //  \/  move up-left  \/
+
+            movement(i, 'blue', 'red', xminus, xminusX2, xplus, xplusX2, yminus, yminusX2, yplus, yplusX2, document.getElementById(pawn))
+
+            //  /\  move up-left  /\
+
+            //  \/  move up-right  \/
+
+            movement(i, 'blue', 'red', xminus, xminusX2, xplus, xplusX2, yplus, yplusX2, yminus, yminusX2, document.getElementById(pawn))
+
+            //  /\  move up-right  /\
+            
         }
         window.pawn = document.getElementById(pawn)
         
@@ -292,42 +281,30 @@ let allowMovementRed = (pawn) => {
         for(let i = 1; i < 33; i++){
 
             if(document.getElementById(pawn).src === 'file:///C:/Users/13852/projects/coding-projects/checkers/red-king.png'){
-                //  \/  move down-left  \/
-
-                movement(i, 'red', 'blue', xplus, xplusX2, yminus, yminusX2, yplus, yplusX2)
-
-                //  /\  move down-left  /\
-
-                //  \/  move down-right  \/
-
-                movement(i, 'red', 'blue', xplus, xplusX2, yplus, yplusX2, yminus, yminusX2)
-
-                //  /\  move down-right  /\
 
                 //  \/  move up-left  \/
 
-                movement(i, 'red', 'blue', xminus, xminusX2, yminus, yminusX2, yplus, yplusX2)
+                movement(i, 'red', 'blue', xminus, xminusX2, xplus, xplusX2, yminus, yminusX2, yplus, yplusX2, document.getElementById(pawn))
 
                 //  /\  move up-left  /\
 
                 //  \/  move up-right  \/
 
-                movement(i, 'red', 'blue', xminus, xminusX2, yplus, yplusX2, yminus, yminusX2)
+                movement(i, 'red', 'blue', xminus, xminusX2, xplus, xplusX2, yplus, yplusX2, yminus, yminusX2, document.getElementById(pawn))
 
                 //  /\  move up-right  /\
-            }else{
-                //  \/  move down-left  \/
-
-                movement(i, 'red', 'blue', xplus, xplusX2, yminus, yminusX2, yplus, yplusX2)
-
-                //  /\  move down-left  /\
-
-                //  \/  move down-right  \/
-
-                movement(i, 'red', 'blue', xplus, xplusX2, yplus, yplusX2, yminus, yminusX2)
-
-                //  /\  move down-right  /\
             }
+            //  \/  move down-left  \/
+
+            movement(i, 'red', 'blue', xplus, xplusX2, xminus, xminusX2, yminus, yminusX2, yplus, yplusX2, document.getElementById(pawn))
+
+            //  /\  move down-left  /\
+
+            //  \/  move down-right  \/
+
+            movement(i, 'red', 'blue', xplus, xplusX2, xminus, xminusX2, yplus, yplusX2, yminus, yminusX2, document.getElementById(pawn))
+
+            //  /\  move down-right  /\
         }
         window.pawn = document.getElementById(pawn)
         
@@ -553,7 +530,7 @@ let otherJump = (crntColor, oppColor, dirV, dirH) => {
 
 //  \/  move  \/
 
-let movement = (i, crntColor, oppColor, dirV, dirVX2, dirH, dirHX2, oppDirH, oppDirHX2) => {
+let movement = (i, crntColor, oppColor, dirV, dirVX2, oppDirV, oppDirVX2, dirH, dirHX2, oppDirH, oppDirHX2, pawn) => {
     if(dirV === document.getElementById(`sp-${i}`).style.marginTop && dirH === document.getElementById(`sp-${i}`).style.marginLeft){
         let occupied = false
         for(let j = 1; j < 13; j++){
@@ -601,6 +578,19 @@ let movement = (i, crntColor, oppColor, dirV, dirVX2, dirH, dirHX2, oppDirH, opp
                         if(jumpMethod(crntColor, oppColor, dirVX2, oppDirHX2) === true){
                             document.getElementById(`sp-${i}`).style.visibility = 'hidden'
                         }
+
+                        // if(pawn.src === 'file:///C:/Users/13852/projects/coding-projects/checkers/blue-king-1.png' || pawn.src === 'file:///C:/Users/13852/projects/coding-projects/checkers/red-king.png'){
+                        //     console.log('hi there')
+                        //     if(jumpMethod(crntColor, oppColor, oppDirVX2, oppDirHX2) === true){
+                        //         console.log('nono')
+                        //         document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+                        //     }
+
+                        //     if(jumpMethod(crntColor, oppColor, oppDirVX2, dirHX2) === true){
+                        //         console.log('yesyes')
+                        //         document.getElementById(`sp-${i}`).style.visibility = 'hidden'
+                        //     }
+                        // }
                     }
                     
                 }
@@ -610,3 +600,8 @@ let movement = (i, crntColor, oppColor, dirV, dirVX2, dirH, dirHX2, oppDirH, opp
 }
 
 //  /\  move  /\
+
+
+
+
+
